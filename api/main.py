@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from scraper.sofascore import get_team_id_by_name
 from scraper.matches import get_form_sequence
+from api.main import app
 
 app = FastAPI()
 
@@ -17,3 +18,4 @@ def form(team_name: str):
         "team": team_name,
         "form": form_data
     }
+
