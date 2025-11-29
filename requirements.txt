@@ -1,0 +1,14 @@
+backend/
+ ├ scraper/
+ │    ├ sofascore.py
+ │    ├ matches.py
+ │    ├ players.py
+ │    └ utils.py
+ ├ api/
+ │    └ main.py
+ ├ models/
+ │    ├ match_model.py
+ │    ├ form_model.py
+ │    ├ tactic_model.py
+ │    ├ prediction_engine.py
+ ├ requirements.txt
