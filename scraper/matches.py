@@ -2,9 +2,6 @@ import requests
 from .sofascore import BASE_URL, headers
 
 def get_last_matches(team_id: int, limit: int = 5):
-    """
-    Belirtilen takımın Sofascore'daki son 'limit' maçını döndürür.
-    """
     url = f"{BASE_URL}/team/{team_id}/events/last/0"
     resp = requests.get(url, headers=headers)
 
@@ -23,7 +20,7 @@ def get_last_matches(team_id: int, limit: int = 5):
         score_home = m["homeScore"]["current"]
         score_away = m["awayScore"]["current"]
 
-        # Sonuç hesaplama
+        # Sonuç (G/B/M)
         if score_home > score_away:
             result = "G"
         elif score_home == score_away:
@@ -42,12 +39,8 @@ def get_last_matches(team_id: int, limit: int = 5):
 
 
 def get_form_sequence(team_id: int):
-    """
-    Son 5 maç B/M/G dizisini döndürür.
-    """
     matches = get_last_matches(team_id)
     if not matches:
         return ""
 
-    form = [m["result"] for m in matches]
-    return " ".join(form)
+    return " ".join([m["result"] for m in matches])
