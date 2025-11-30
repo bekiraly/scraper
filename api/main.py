@@ -15,3 +15,11 @@ def form(team: str):
         return {"error": "Takım bulunamadı"}
 
     return data
+
+from scraper.api_football import HEADERS, API_BASE
+
+@app.get("/fixturetest")
+def fixturetest():
+    import requests
+    url = f"{API_BASE}/fixtures?league=203&season=2024&last=5"
+    return requests.get(url, headers=HEADERS).json()
