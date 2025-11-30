@@ -2,14 +2,14 @@ import os
 import requests
 
 API_BASE = "https://v3.football.api-sports.io"
-API_KEY = os.getenv("API_FOOTBALL_KEY")
 
-if not API_KEY:
-    raise RuntimeError("API_FOOTBALL_KEY env değişkeni tanımlı değil.")
+def get_last_five_matches(team):
+    API_KEY = os.getenv("API_FOOTBALL_KEY")
+    if not API_KEY:
+        raise RuntimeError("API_FOOTBALL_KEY env değişkeni yok.")
 
-HEADERS = {
-    "x-apisports-key": API_KEY
-}
+    headers = {"x-apisports-key": API_KEY}
+    }
 
 
 def get_super_lig_league_and_season():
@@ -140,3 +140,4 @@ def get_last_five_matches(team_name: str):
         "form_string": " ".join(form_letters[::-1]),  # eskiden yeniye ters çevir
         "matches": list(reversed(results))           # kronolojik olsun diye ters çevir
     }
+
