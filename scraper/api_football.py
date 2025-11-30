@@ -77,10 +77,12 @@ def get_last_five_matches(team):
         "logo": logo,
         "form_string": " ".join(form_letters),
         "matches": matches
+        
     def debug_team_search(team):
     url = f"{API_BASE}/teams?search={team}"
     res = requests.get(url, headers=HEADERS).json()
     return res
 
     }
+
 
