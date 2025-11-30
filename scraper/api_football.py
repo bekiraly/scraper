@@ -22,6 +22,7 @@ def get_super_lig_season():
     except:
         raise RuntimeError("Super Lig league/season not found")
 
+
 def get_last_five_matches(team):
     league_id, season = get_super_lig_season()
 
@@ -32,7 +33,10 @@ def get_last_five_matches(team):
     if not res_team["response"]:
         return {"error": "Takım bulunamadı"}
 
-    team_id = res_team["response"][0]["team"]["id"]
+    team_data = res_team["response"][0]["team"]
+    team_id = team_data["id"]
+    team_name = team_data["name"]
+    logo = team_data["logo"]
 
     # last matches
     url_matches = f"{API_BASE}/fixtures?team={team_id}&season={season}&league={league_id}&last=5"
@@ -46,16 +50,18 @@ def get_last_five_matches(team):
         away = m["teams"]["away"]
         score = m["goals"]
 
+        # who won?
         if home["winner"] is True:
-            win_team = home["name"]
+            winner = home["name"]
         elif away["winner"] is True:
-            win_team = away["name"]
+            winner = away["name"]
         else:
-            win_team = None
+            winner = None
 
-        if win_team is None:
+        # form sequence
+        if winner is None:
             form_letters.append("B")
-        elif win_team.lower() == team.lower():
+        elif winner.lower() == team_name.lower():
             form_letters.append("G")
         else:
             form_letters.append("M")
@@ -67,6 +73,8 @@ def get_last_five_matches(team):
         })
 
     return {
-        "form": " ".join(form_letters),
+        "team_name": team_name,
+        "logo": logo,
+        "form_string": " ".join(form_letters),
         "matches": matches
     }
