@@ -29,7 +29,7 @@ def get_last_five_matches(team):
     res_team = requests.get(url_team, headers=HEADERS).json()
 
     if not res_team["response"]:
-        return {"error": "Takım bulunamadı"}
+        return None  # FastAPI burada "Takım bulunamadı" diyecek
 
     team_data = res_team["response"][0]["team"]
     team_id = team_data["id"]
