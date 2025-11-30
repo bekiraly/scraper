@@ -22,7 +22,11 @@ def get_super_lig_season():
     except:
         raise RuntimeError("Super Lig league/season not found")
 
-
+ def debug_team_search(team):
+    url = f"{API_BASE}/teams?search={team}"
+    res = requests.get(url, headers=HEADERS).json()
+    return res
+     
 def get_last_five_matches(team):
     league_id, season = get_super_lig_season()
 
@@ -77,11 +81,6 @@ def get_last_five_matches(team):
         "logo": logo,
         "form_string": " ".join(form_letters),
         "matches": matches
-        
-    def debug_team_search(team):
-    url = f"{API_BASE}/teams?search={team}"
-    res = requests.get(url, headers=HEADERS).json()
-    return res
 
     }
 
