@@ -1,5 +1,5 @@
-from app.models import RawAggregateData, TeamFormData
-from app.scraping.sites import sofascore
+from api.models import RawAggregateData, TeamFormData
+from api.scraping.sites import sofascore
 # nesine/bilyoner/livescore modüllerini de burada import edebilirsin
 
 
