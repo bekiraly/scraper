@@ -6,4 +6,4 @@ playwright
 numpy
 scikit-learn
 playwright
-
+beautifulsoup4
