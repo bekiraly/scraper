@@ -1,7 +1,7 @@
 from typing import Dict
 import math
-from app.models import PredictionOutput, RawAggregateData
-from app.features import build_features
+from api.models import PredictionOutput, RawAggregateData
+from api.features import build_features
 
 
 def _score_home(f: Dict[str, float]) -> float:
