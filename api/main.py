@@ -3,8 +3,10 @@ from api.models import AnalyzeRequest, AnalyzeResponse
 from api.analyzer import analyze_match
 from api.prediction import predict_from_raw
 
-from scraper.sites.sofascore import get_team_form
-from scraper.sites.nesine import get_fixture_random
+from scraper.sites.sofascore import SofaScoreScraper
+from scraper.sites.nesine import NesineScraper
+from scraper.browser import Browser
+
 
 app = FastAPI(
     title="NewDay AI Football Engine",
@@ -38,6 +40,7 @@ def analyze(req: AnalyzeRequest):
         prediction=pred,
         raw=raw,
     )
+
 
 
 
