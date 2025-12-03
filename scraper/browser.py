@@ -9,7 +9,8 @@ class Browser:
                 "--no-sandbox",
                 "--disable-setuid-sandbox",
                 "--disable-dev-shm-usage"
-            ]
+            ],
+            executable_path="/tmp/pw/chromium/chrome-linux/chrome"
         )
         self.page = await self.browser.new_page()
         return self.page
