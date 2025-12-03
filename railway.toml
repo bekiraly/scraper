@@ -7,15 +7,15 @@ plan = "python"
 [build.nixpacks.phases.setup]
 cmds = [
   "apt-get update",
-  "apt-get install -y wget gnupg ca-certificates",
+  "apt-get install -y unzip wget gnupg ca-certificates",
   "wget https://github.com/microsoft/playwright/releases/download/v1.44.1/playwright-linux-x64.zip -O /tmp/pw.zip",
   "unzip /tmp/pw.zip -d /tmp/pw"
 ]
 
 [build.nixpacks.phases.install]
 cmds = [
-  "pip install -r requirements.txt",
-  "python -m playwright install chromium"
+  "pip install --upgrade pip",
+  "pip install -r requirements.txt"
 ]
 
 [start]
