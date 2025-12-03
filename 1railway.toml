@@ -2,7 +2,6 @@
 builder = "NIXPACKS"
 
 [build.nixpacks]
-# Buildpack ayarları
 config = { PYTHON_VERSION = "3.12" }
 
 [build.nixpacks.phases.setup]
@@ -18,7 +17,7 @@ cmds = [
 cmds = [
   "pip install --upgrade pip",
   "pip install -r requirements.txt",
-  "playwright install chromium"
+  "playwright install --with-deps chromium"
 ]
 
 [start]
