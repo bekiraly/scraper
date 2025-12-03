@@ -1,9 +1,8 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
 from api.models import AnalyzeRequest, AnalyzeResponse
-from api.analyzer import build_raw_aggregate
-from api.prediction import predict_from_raw
+from api.analyzer import analyze_match
+from scraper.sites.sofascore import get_team_form
+from scraper.sites.nesine import get_fixture_random
 
 app = FastAPI(
     title="NewDay AI Football Engine",
@@ -37,4 +36,5 @@ def analyze(req: AnalyzeRequest):
         prediction=pred,
         raw=raw,
     )
+
 
