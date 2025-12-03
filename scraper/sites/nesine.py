@@ -3,6 +3,19 @@ from api.models import TeamFormData
 from api.scraping.browser import fetch_html
 from .base import safe_str
 from bs4 import BeautifulSoup  # bunu requirements'a eklemedik, ekleyelim
+from scraper.sites.base import BaseSiteScraper
+
+class NesineScraper(BaseSiteScraper):
+
+    async def get_odds(self, home: str, away: str) -> dict:
+        """
+        Dummy oran bilgisi (gerçek scraping Browser ile yapılacak)
+        """
+        return {
+            "home": 1.80,
+            "draw": 3.20,
+            "away": 2.40
+        }
 
 
 # requirements.txt'ye ekle: beautifulsoup4
