@@ -1,4 +1,4 @@
-from api.models import RawAggregateData, TeamFormData
+from api.models import RawAggregateData
 from scraper.sites.sofascore import SofaScoreScraper
 from scraper.sites.nesine import NesineScraper
 from scraper.browser import Browser
@@ -10,15 +10,12 @@ async def analyze_match(home: str, away: str) -> RawAggregateData:
     """
 
     async with Browser() as page:
-       ss = SofaScoreScraper(page)
-       ns = NesineScraper(page)
+        ss = SofaScoreScraper(page)
+        ns = NesineScraper(page)
 
-
-        # Sofascore form
         form_home = await ss.get_team_form(home)
         form_away = await ss.get_team_form(away)
 
-        # Nesine oranları
         odds = await ns.get_odds(home, away)
 
         return RawAggregateData(
