@@ -1,43 +1,34 @@
 from api.models import RawAggregateData, TeamFormData
-from api.scraping.sites import sofascore
+
+# SCRAPER IMPORTS (DOĞRU)
 from scraper.sites.sofascore import SofaScoreScraper
 from scraper.sites.nesine import NesineScraper
-
-def aggregate_team_form(team_name: str) -> TeamFormData:
-    """
-    Şimdilik ana kaynak Sofascore.
-    İleride Nesine/diğerlerinden de destek form bilgisi toplayabiliriz.
-    """
-    ss = sofascore.get_team_form(team_name)
-    if ss:
-        return ss
-
-    # fallback:
-    return TeamFormData(team_name=team_name, form_string="", matches=[])
+from scraper.browser import Browser
 
 
-def aggregate_odds(home: str, away: str):
-    """
-    Nesine/Bilyoner odds toplanacağı yer.
-    Şimdilik boş dönüyoruz.
-    """
-    return {
-        "odds_1": None,
-        "odds_x": None,
-        "odds_2": None,
-    }
+async def analyze_match(home: str, away: str):
+    """Tüm sitelerden verileri toplayıp unify eder."""
 
+    browser = Browser()
 
-def build_raw_aggregate(home: str, away: str) -> RawAggregateData:
-    home_form = aggregate_team_form(home)
-    away_form = aggregate_team_form(away)
+    sofascore = SofaScoreScraper(browser)
+    nesine = NesineScraper(browser)
 
-    odds = aggregate_odds(home, away)
+    # Sofascore – Son 5 maç, takım bilgisi
+    home_form = await sofascore.get_last_five(home)
+    away_form = await sofascore.get_last_five(away)
+
+    # Nesine – Oran, bahis formu vs.
+    odds_home, odds_draw, odds_away = await nesine.get_odds(home, away)
+
+    await browser.close()
 
     return RawAggregateData(
-        home=home_form,
-        away=away_form,
-        odds_1=odds["odds_1"],
-        odds_x=odds["odds_x"],
-        odds_2=odds["odds_2"],
+        home=home,
+        away=away,
+        form_home=home_form,
+        form_away=away_form,
+        odds_home=odds_home,
+        odds_draw=odds_draw,
+        odds_away=odds_away,
     )
