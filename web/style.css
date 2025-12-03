@@ -1,3 +1,5 @@
+/* style.css */
+
 :root {
   --bg-dark: #050710;
   --accent-blue: #06b6ff;
@@ -28,6 +30,13 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+/* Ortak helper */
+.hidden {
+  display: none;
+}
+
+/* Logo */
 .team-logo {
   width: 34px;
   height: 34px;
@@ -36,12 +45,6 @@ body {
   object-fit: contain;
   background: rgba(15, 23, 42, 0.8);
   margin: 0 6px;
-}
-
-.hidden {
-  display: none;
-}
-
 }
 
 /* Arka plan split */
@@ -141,6 +144,8 @@ body {
   font-size: 12px;
   color: var(--text-muted);
 }
+
+/* Form sonuçları */
 .form-results {
   margin-top: 10px;
   font-size: 12px;
@@ -155,7 +160,6 @@ body {
   color: var(--text-main);
   letter-spacing: 0.05em;
 }
-
 
 /* Main card */
 .main {
@@ -260,50 +264,14 @@ body {
   overflow: hidden;
   background: radial-gradient(circle at center, #020617, #020617);
 }
-.team-logo {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  object-fit: contain;
-  background: rgba(15, 23, 42, 0.8);
-  margin: 0 6px;
-}
-
-.hidden {
-  display: none;
-}
-
-.ticker {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.88);
-  color: #e5e7eb;
-  padding: 6px 12px;
-  overflow: hidden;
-  border-top: 1px solid rgba(148, 163, 184, 0.6);
-  z-index: 50;
-}
-
-.ticker-content {
-  white-space: nowrap;
-  display: inline-block;
-  animation: tickerMove 22s linear infinite;
-  font-size: 13px;
-}
-
-@keyframes tickerMove {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
 
 .vs-side {
   flex: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
   z-index: 1;
+  gap: 6px;
 }
 
 .vs-side span {
@@ -525,9 +493,34 @@ body {
   color: var(--text-muted);
 }
 
-/* Helpers */
-.hidden {
-  display: none;
+/* Ticker */
+.ticker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.88);
+  color: #e5e7eb;
+  padding: 6px 12px;
+  overflow: hidden;
+  border-top: 1px solid rgba(148, 163, 184, 0.6);
+  z-index: 50;
+}
+
+.ticker-content {
+  white-space: nowrap;
+  display: inline-block;
+  animation: tickerMove 22s linear infinite;
+  font-size: 13px;
+}
+
+@keyframes tickerMove {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 /* Responsive */
