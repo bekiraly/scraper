@@ -1,18 +1,14 @@
-[deploy]
-startCommand = "uvicorn api.main:app --host 0.0.0.0 --port 8000"
-
 [build]
 builder = "NIXPACKS"
 
-[phases.setup]
-nixPkgs = ["python311", "chromium", "chromiumDriver"]
+[build.nixpacks]
+plan = "python"
 
-[phases.install]
-cmds = [
-  "pip install --upgrade pip",
-  "pip install -r requirements.txt",
-  "playwright install chromium"
-]
+[build.commands]
+build = """
+pip install -r requirements.txt
+python -m playwright install chromium
+"""
 
-[variables]
-PLAYWRIGHT_BROWSERS_PATH = "/tmp/pw"
+[start]
+cmd = "uvicorn api.main:app --host 0.0.0.0 --port $PORT"
