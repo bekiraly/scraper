@@ -5,3 +5,5 @@ requests
 playwright
 numpy
 scikit-learn
+playwright
+
