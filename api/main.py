@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from api.models import AnalyzeRequest, AnalyzeResponse
 from api.analyzer import analyze_match
+from api.prediction import predict_from_raw
+
 from scraper.sites.sofascore import get_team_form
 from scraper.sites.nesine import get_fixture_random
 
@@ -36,5 +38,6 @@ def analyze(req: AnalyzeRequest):
         prediction=pred,
         raw=raw,
     )
+
 
 
