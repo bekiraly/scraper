@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from api.models import AnalyzeRequest, AnalyzeResponse
 from api.analyzer import analyze_match
 from api.prediction import predict_from_raw
@@ -41,6 +42,7 @@ def analyze(req: AnalyzeRequest):
         prediction=pred,
         raw=raw,
     )
+
 
 
 
