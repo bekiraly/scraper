@@ -1,3 +1,4 @@
+from api.models import RawAggregateData, TeamFormData
 from scraper.sites.sofascore import SofaScoreScraper
 from scraper.sites.nesine import NesineScraper
 from scraper.browser import Browser
