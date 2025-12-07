@@ -1,6 +1,6 @@
 from typing import Any, Dict
 
-from ..data_providers.api_football import APIFootballClient
+from ..data_providers.api_football import APIFootball
 from ..features.form_features import compute_form_features
 from ..features.goal_features import compute_goal_features
 from ..normalizers.match_normalizer import (
