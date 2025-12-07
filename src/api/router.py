@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ..engine.prediction_engine import predict_match
+from src.engine.prediction_engine import predict_match
 
 router = APIRouter(prefix="/api")
 
