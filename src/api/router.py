@@ -1,8 +1,20 @@
-from fastapi import APIRouter
-from src.engine.prediction_engine import predict_match
+from fastapi import APIRouter, Query
 
-router = APIRouter(prefix="/api")
+from ..engine.prediction_engine import predict_match
+
+router = APIRouter(prefix="/api", tags=["prediction"])
+
 
 @router.get("/predict")
-def predict(league: str, season: int, home: str, away: str):
-    return predict_match(league, season, home, away)
+def predict(
+    home: str,
+    away: str,
+    league: str = Query("TR1", description="Lig kodu (şimdilik sadece meta)"),
+    season: int = Query(2024, description="Sezon (şimdilik sadece meta)"),
+):
+    """
+    Örnek:
+    /api/predict?home=Galatasaray&away=Samsunspor
+    """
+    result = predict_match(league=league, season=season, home=home, away=away)
+    return result
