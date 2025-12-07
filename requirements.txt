@@ -7,3 +7,8 @@ beautifulsoup4
 scikit-learn
 numpy
 scipy
+python-dotenv
+numpy
+pandas
+scikit-learn
+
