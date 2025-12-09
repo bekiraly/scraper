@@ -22,18 +22,13 @@ class APIFootball:
         if data.get("results", 0) == 0:
             return None
 
-        # En doğru eşleşmeyi seç
         for item in data["response"]:
             if country and item["team"]["country"] != country:
                 continue
             return item["team"]["id"]
 
-        return data["response"][0]["team"]["id"]  # fallback
+        return data["response"][0]["team"]["id"]
 
-    "]
-
-        return data["response"][0]["team"]["id"]  # fallback
-    
     def get_last_fixtures(self, team_id, last=5, season=2024):
         url = f"{BASE_URL}/fixtures?team={team_id}&season={season}&last={last}"
         res = requests.get(url, headers=HEADERS)
