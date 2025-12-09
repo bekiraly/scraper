@@ -10,7 +10,7 @@ from ..normalizers.match_normalizer import (
 from ..utils.math_utils import clamp
 
 
-api = APIFootballClient()
+api = APIFootball()
 
 
 def _compute_strength(form: Dict[str, Any]) -> float:
