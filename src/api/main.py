@@ -1,12 +1,14 @@
 from fastapi import FastAPI
+import os
 from fastapi.middleware.cors import CORSMiddleware
 from src.api.router import router
 
-app = FastAPI(
-    title="NewDayAI - Match Prediction Engine",
-    description="API-Football verileriyle maç analizi ve tahmin motoru",
-    version="1.0.0"
-)
+app = FastAPI()
+
+@app.get("/debug/apikey")
+def debug_key():
+    return {"API_FOOTBALL_KEY": os.getenv("API_FOOTBALL_KEY")}
+
 
 # CORS
 app.add_middleware(
