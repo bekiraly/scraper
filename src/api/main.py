@@ -9,6 +9,8 @@ app = FastAPI()
 def debug_key():
     return {"API_FOOTBALL_KEY": os.getenv("API_FOOTBALL_KEY")}
 
+from dotenv import load_dotenv
+load_dotenv(dotenv_path=".env")
 
 # CORS
 app.add_middleware(
@@ -24,3 +26,4 @@ app.include_router(router)
 @app.get("/")
 async def root():
     return {"status": "ok", "service": "NewDayAI Engine"}
+
